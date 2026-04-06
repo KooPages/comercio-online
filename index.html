@@ -1,0 +1,79 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Gestores de venta | Comercio Online</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%231f6392'/%3E%3Ctext x='50' y='70' font-size='50' text-anchor='middle' fill='white' font-weight='bold'%3EG%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="store-wrapper">
+    <div class="logo-banner">
+        <div class="logo-area">
+            <div class="logo-icon">G</div>
+            <div class="logo-text">
+                <h1>Gestores De Venta | Comercio Online</h1>
+                <p>Envíos incluido · Garantías</p>
+            </div>
+        </div>
+        <div class="banner">
+            <div>
+                <h2><i class="fas fa-bolt"></i> OFERTAS 🄿🅁🄴🄼🄸🅄🄼</h2>
+                <p>Brindamos todo tipo de electrodomésticos</p>
+            </div>
+            <div class="banner-tag"><i class="fab fa-whatsapp"></i> Consultas</div>
+        </div>
+    </div>
+
+    <div class="top-bar">
+        <div class="cart-summary">
+            <i class="fas fa-cart-shopping"></i>
+            <span>MIS COMPRAS</span>
+            <span class="cart-badge" id="cartGlobalCount">0</span>
+        </div>
+    </div>
+
+    <div class="shop-grid">
+        <div class="products-container" id="productsGrid"></div>
+        <div class="cart-sidebar">
+            <div class="cart-header">
+                <h3><i class="fas fa-bag-shopping"></i> Carrito</h3>
+                <button class="clear-cart" id="clearCartBtn"><i class="fas fa-trash-alt"></i> Vaciar</button>
+            </div>
+            <div id="cartItemsList" class="cart-list">
+                <div class="empty-cart-msg">🛒 Tu carrito está vacío</div>
+            </div>
+            <div>
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="cartTotalPrice">$0.00</span>
+                </div>
+                <button class="checkout-wa" id="checkoutWhatsAppBtn">
+                    <i class="fab fa-whatsapp"></i> Comprar por WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="productModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="modalTitle"></h2>
+            <button class="close-modal" id="closeModalBtn">&times;</button>
+        </div>
+        <div class="modal-body" id="modalBody"></div>
+        <button class="modal-add" id="modalAddToCartBtn">➕ Añadir al carrito</button>
+    </div>
+</div>
+
+<script src="product.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
