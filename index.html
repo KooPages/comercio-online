@@ -1,79 +1,240 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Gestores de venta | Comercio Online</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%231f6392'/%3E%3Ctext x='50' y='70' font-size='50' text-anchor='middle' fill='white' font-weight='bold'%3EG%3C/text%3E%3C/svg%3E">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>Gestores de venta</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%231f6392'/%3E%3Ctext x='50' y='70' font-size='50' text-anchor='middle' fill='white' font-weight='bold'%3EG%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;user-select:none;-webkit-user-select:none}
+    body{font-family:'Inter',sans-serif;background:#f5f7fc;color:#0a1c2f;padding:1rem}
+    .store-wrapper{max-width:1300px;margin:0 auto}
+    .announcement-bar{background:#0f2b4d;color:#fff;padding:0.45rem 1.2rem;border-radius:2.5rem;margin-bottom:1rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;font-weight:500;font-size:0.85rem}
+    .announcement-bar a{color:#f9b43a;text-decoration:none;font-weight:700;background:rgba(255,255,255,0.1);padding:0.25rem 1rem;border-radius:2rem;transition:0.2s;border:1px solid rgba(255,255,255,0.15)}
+    .announcement-bar a:hover{background:#f9b43a;color:#0f2b4d}
+    .logo-banner{background:linear-gradient(135deg,#0a2a3b 0%,#1c5a7a 100%);border-radius:1.4rem;margin-bottom:1.5rem;overflow:hidden;box-shadow:0 8px 18px -8px rgba(0,0,0,0.1)}
+    .logo-area{display:flex;align-items:center;gap:0.8rem;padding:1rem 1.5rem;background:rgba(255,255,255,0.05);backdrop-filter:blur(2px);border-bottom:1px solid rgba(255,255,255,0.15)}
+    .logo-icon{background:#fff;width:48px;height:48px;border-radius:28px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;font-weight:800;color:#1c5a7a;box-shadow:0 4px 10px rgba(0,0,0,0.1)}
+    .logo-text h1{font-size:1.4rem;font-weight:800;color:#fff;letter-spacing:-0.2px;line-height:1.2}
+    .logo-text p{color:rgba(255,255,255,0.8);font-size:0.75rem}
+    .banner{background:linear-gradient(95deg,#f9b43a 0%,#fb6b2b 100%);padding:1.2rem 1.8rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.8rem}
+    .banner h2{color:#1e2a2f;font-weight:800;font-size:1.3rem}
+    .banner p{font-weight:500;color:#2c2c2c;font-size:0.9rem}
+    .banner-tag{background:rgba(0,0,0,0.2);padding:0.3rem 0.9rem;border-radius:2.5rem;color:#fff;font-weight:600;font-size:0.85rem}
+    .top-bar{display:flex;justify-content:flex-end;margin-bottom:1.2rem}
+    .cart-summary{background:#fff;padding:0.45rem 1.2rem;border-radius:2.5rem;display:flex;align-items:center;gap:0.8rem;font-weight:600;font-size:0.85rem;box-shadow:0 2px 6px rgba(0,0,0,0.02)}
+    .cart-summary i{font-size:1.2rem;color:#1f6392}
+    .cart-badge{background:#1f6392;color:#fff;border-radius:2rem;padding:0.15rem 0.6rem;font-size:0.75rem}
+    .shop-grid{display:grid;grid-template-columns:1fr 320px;gap:1.5rem}
+    .products-container{display:grid;grid-template-columns:repeat(auto-fill, minmax(240px,1fr));gap:1.2rem}
+    .product-card{background:#fff;border-radius:1.2rem;overflow:hidden;transition:0.15s;box-shadow:0 4px 10px rgba(0,0,0,0.02);border:1px solid #eef2f8;display:flex;flex-direction:column}
+    .product-card:hover{transform:translateY(-3px);box-shadow:0 12px 22px -10px rgba(0,0,0,0.1)}
+    .product-info{padding:1.1rem 1rem 1.2rem}
+    .product-title{font-weight:700;font-size:0.9rem;margin-bottom:0.3rem;line-height:1.25}
+    .product-price{font-weight:800;font-size:1.2rem;color:#1f6392;margin:0.5rem 0}
+    .card-buttons{display:flex;gap:0.5rem}
+    .btn-add,.btn-details{flex:1;border:none;padding:0.55rem 0;border-radius:2rem;font-weight:600;font-size:0.75rem;cursor:pointer;transition:0.15s;display:inline-flex;align-items:center;justify-content:center;gap:5px}
+    .btn-add{background:#0f2b4d;color:#fff}
+    .btn-add:hover{background:#1f4b6e}
+    .btn-details{background:#eef2fa;color:#1f6392}
+    .cart-sidebar{background:#fff;border-radius:1.2rem;padding:1rem;box-shadow:0 6px 14px rgba(0,0,0,0.03);position:sticky;top:1rem;align-self:start;max-height:85vh;display:flex;flex-direction:column;border:1px solid #eef2f8}
+    .cart-header{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1.5px solid #eef2f8;padding-bottom:0.6rem;margin-bottom:0.8rem}
+    .cart-header h3{font-size:1.1rem;font-weight:700;display:flex;gap:0.4rem;align-items:center}
+    .clear-cart{background:none;border:none;color:#d9534f;font-size:0.7rem;font-weight:500;cursor:pointer}
+    .cart-list{flex:1;overflow-y:auto;max-height:52vh;margin-bottom:0.8rem;padding-right:0.2rem}
+    .cart-item{display:flex;gap:10px;background:#fafdff;border-radius:0.9rem;padding:0.6rem;margin-bottom:0.7rem;border:1px solid #eef2f8;align-items:center}
+    .cart-item-details{flex:1}
+    .cart-item-name{font-weight:600;font-size:0.8rem;line-height:1.2}
+    .cart-item-price{font-size:0.7rem;color:#1f6392;font-weight:600}
+    .cart-qty-control{display:flex;align-items:center;gap:6px;margin-top:4px}
+    .qty-btn{background:#eef2f8;border:none;width:22px;height:22px;border-radius:30px;font-weight:bold;cursor:pointer;font-size:0.9rem;line-height:1}
+    .cart-item-qty{font-weight:600;font-size:0.75rem}
+    .remove-item-btn{background:none;border:none;color:#d9534f;font-size:0.7rem;margin-left:4px;cursor:pointer}
+    .cart-total{border-top:1.5px dashed #e2eaf1;padding-top:0.7rem;display:flex;justify-content:space-between;font-weight:800;font-size:1rem;margin:0.4rem 0}
+    .checkout-wa{background:#25D366;color:#fff;border:none;width:100%;padding:0.7rem;border-radius:2.2rem;font-weight:700;font-size:0.9rem;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:0.15s}
+    .checkout-wa:hover{background:#128C7E}
+    .empty-cart-msg{text-align:center;color:#6c819e;padding:1.2rem 0;font-size:0.8rem}
+    .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);align-items:center;justify-content:center;z-index:1000;backdrop-filter:blur(2px)}
+    .modal-content{background:#fff;max-width:500px;width:90%;border-radius:1.8rem;padding:1.3rem;max-height:80vh;overflow-y:auto;animation:fadeUp 0.15s}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+    .modal-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eef2f8;padding-bottom:0.5rem;margin-bottom:1rem}
+    .modal-header h2{font-size:1.2rem;font-weight:700}
+    .close-modal{background:none;border:none;font-size:1.8rem;cursor:pointer;line-height:1}
+    .modal-body{font-size:0.85rem;line-height:1.45;color:#1e2f3f}
+    .modal-add{margin-top:1rem;background:#0f2b4d;color:#fff;border:none;padding:0.6rem;border-radius:2rem;font-weight:600;width:100%;cursor:pointer;font-size:0.85rem}
+    .watermark{position:fixed;bottom:16px;right:16px;font-size:2.2rem;font-weight:800;color:rgba(15,43,77,0.1);pointer-events:none;z-index:999;transform:rotate(-5deg);letter-spacing:5px;white-space:nowrap}
+    @media (max-width:750px){
+      body{padding:0.8rem}
+      .shop-grid{grid-template-columns:1fr;gap:1.2rem}
+      .cart-sidebar{position:static;max-height:none}
+      .logo-text h1{font-size:1.1rem}
+      .banner h2{font-size:1.1rem}
+      .watermark{font-size:1.8rem;bottom:10px;right:10px}
+    }
+  </style>
 </head>
 <body>
+<div class="watermark">™KOOWEXA</div>
 <div class="store-wrapper">
-    <div class="logo-banner">
-        <div class="logo-area">
-            <div class="logo-icon">G</div>
-            <div class="logo-text">
-                <h1>Gestores De Venta | Comercio Online</h1>
-                <p>Envíos incluido · Garantías</p>
-            </div>
-        </div>
-        <div class="banner">
-            <div>
-                <h2><i class="fas fa-bolt"></i> OFERTAS 🄿🅁🄴🄼🄸🅄🄼</h2>
-                <p>Brindamos todo tipo de electrodomésticos</p>
-            </div>
-            <div class="banner-tag"><i class="fab fa-whatsapp"></i> Consultas</div>
-        </div>
+  <div class="announcement-bar">
+    <span><i class="fas fa-bullhorn" style="margin-right:6px"></i>™Koowexa Colaboración</span>
+    <a href="https://koowexa.github.io/oficial/" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> koowexa website</a>
+  </div>
+  <div class="logo-banner">
+    <div class="logo-area">
+      <div class="logo-icon">GC</div>
+      <div class="logo-text">
+        <h1>Gestores De Venta · Comercio Online</h1>
+        <p>Envíos incluido · Garantías</p>
+      </div>
     </div>
-
-    <div class="top-bar">
-        <div class="cart-summary">
-            <i class="fas fa-cart-shopping"></i>
-            <span>MIS COMPRAS</span>
-            <span class="cart-badge" id="cartGlobalCount">0</span>
-        </div>
+    <div class="banner">
+      <div>
+        <h2><i class="fas fa-bolt"></i> OFERTAS PREMIUM</h2>
+        <p>Brindamos todo tipo de electrodomésticos</p>
+      </div>
+      <div class="banner-tag"><i class="fab fa-whatsapp"></i> Consultas</div>
     </div>
-
-    <div class="shop-grid">
-        <div class="products-container" id="productsGrid"></div>
-        <div class="cart-sidebar">
-            <div class="cart-header">
-                <h3><i class="fas fa-bag-shopping"></i> Carrito</h3>
-                <button class="clear-cart" id="clearCartBtn"><i class="fas fa-trash-alt"></i> Vaciar</button>
-            </div>
-            <div id="cartItemsList" class="cart-list">
-                <div class="empty-cart-msg">🛒 Tu carrito está vacío</div>
-            </div>
-            <div>
-                <div class="cart-total">
-                    <span>Total:</span>
-                    <span id="cartTotalPrice">$0.00</span>
-                </div>
-                <button class="checkout-wa" id="checkoutWhatsAppBtn">
-                    <i class="fab fa-whatsapp"></i> Comprar por WhatsApp
-                </button>
-            </div>
-        </div>
+  </div>
+  <div class="top-bar">
+    <div class="cart-summary">
+      <i class="fas fa-cart-shopping"></i>
+      <span>MIS COMPRAS</span>
+      <span class="cart-badge" id="cartGlobalCount">0</span>
     </div>
+  </div>
+  <div class="shop-grid">
+    <div class="products-container" id="productsGrid"></div>
+    <div class="cart-sidebar">
+      <div class="cart-header">
+        <h3><i class="fas fa-bag-shopping"></i> Carrito</h3>
+        <button class="clear-cart" id="clearCartBtn"><i class="fas fa-trash-alt"></i> Vaciar</button>
+      </div>
+      <div id="cartItemsList" class="cart-list"><div class="empty-cart-msg">🛒 Tu carrito está vacío</div></div>
+      <div>
+        <div class="cart-total"><span>Total:</span><span id="cartTotalPrice">$0.00</span></div>
+        <button class="checkout-wa" id="checkoutWhatsAppBtn"><i class="fab fa-whatsapp"></i> Comprar por WhatsApp</button>
+      </div>
+    </div>
+  </div>
 </div>
-
 <div id="productModal" class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h2 id="modalTitle"></h2>
-            <button class="close-modal" id="closeModalBtn">&times;</button>
-        </div>
-        <div class="modal-body" id="modalBody"></div>
-        <button class="modal-add" id="modalAddToCartBtn">➕ Añadir al carrito</button>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 id="modalTitle"></h2>
+      <button class="close-modal" id="closeModalBtn">&times;</button>
     </div>
+    <div class="modal-body" id="modalBody"></div>
+    <button class="modal-add" id="modalAddToCartBtn">➕ Añadir al carrito</button>
+  </div>
 </div>
+<script>
+  (function(){
+    document.addEventListener('contextmenu',e=>e.preventDefault());
+    document.addEventListener('keydown',e=>{if(e.key==='F12'||(e.ctrlKey&&e.shiftKey&&(e.key==='I'||e.key==='C'||e.key==='J'))||(e.ctrlKey&&e.key==='u'))e.preventDefault()});
+    document.addEventListener('selectstart',e=>e.preventDefault());
+    document.addEventListener('copy',e=>{e.preventDefault();alert('❌ Contenido protegido')});
+  })();
 
-<script src="product.js"></script>
-<script src="script.js"></script>
+  const PRODUCTS = [
+    {id:"socling_bike",name:"BICICLETA ELECTRICA PLEGABLE SOCLING",price:700,fullDescription:"ESPECIFICACIONES:<br>• 500 W - 48 V - 10 AH<br>• velocidad maxima: 32 km/h<br>• autonomia de 40-50km<br>• Luces LED, Frenos de Disco, Amortiguadores, Llantas de Balon 14'<br>• Doble Asiento y Plegable<br>• Carga 330Lb<br>• BATERIA DE LITIO<br>• INCLUYE: cesta, candado, portacelular, cargador inteligente, llaves, manual y herramientas<br>TRANSPORTE INCLUIDO<br>GARANTIA 7 DIAS<br>COLOR: NEGRO<br>FORMA DE PAGO: USD EFECTIVO , ZELLE<br>PRECIO: 700 USD"},
+    {id:"lanx_station",name:"Estacion de energia portatil LANX 600W",price:450,fullDescription:"• Tipo de bateria LiFePO4<br>• Inversor Onda sinusoidal modificada<br>• Fuente: Adaptador CA, Panel solar, Coche<br>• Controlador MPPT<br>• Tipo C - Carga Rapida QC3.0-PD<br>• Potencia nominal: 600W<br>• Voltaje sistema: 12.8V<br>• Incluye panel solar plegable y 3 bombillos LED<br>Transporte incluido<br>PRECIO: 450 USD"},
+    {id:"must_hbp33",name:"MUST HBP33-3024 TLV | Todo en uno solar 3kW",price:2350,fullDescription:"Modelo: MUST HBP33-3024 TLV<br>POTENCIA: Inversor 3,000 W, Onda sinusoidal pura<br>BATERIA: 7,168 Wh LiFePO₄, 24V<br>MPPT integrado, compatible paneles solares<br>Salida 110-120V AC<br>Transporte incluido<br>PRECIO: 2350 USD"},
+    {id:"bateria_respaldo_6000w",name:"Bateria de Respaldo 6000W - 14338Wh",price:3250,fullDescription:"SISTEMA TODO EN UNO (Inversor + Bateria + Controlador Solar)<br>• Voltaje: 120V - 240V<br>• Potencia inversor: 6000W<br>• Potencia bateria: 14338Wh<br>• Bateria Litio segura y duradera<br>• Facil movimiento con ruedas<br>• Respaldo confiable para apagones<br>• Ideal para hogar o negocio<br>• Funciona con red electrica y paneles solares<br>• Carga rapida<br>Transporte incluido<br>PRECIO: 3250 USD"},
+    {id:"sistema_hibrido_6000w",name:"Sistema Hibrido 6000W - 14338Wh",price:3350,fullDescription:"TODO EN UNO (Inversor + Bateria LiFePO4 + MPPT)<br>• Voltaje 120V-240V<br>• Potencia inversor 6000W<br>• Capacidad 14338Wh<br>• Ruedas para movilidad<br>• Respaldo automatico ante apagones<br>• Uso domestico / comercial<br>• Carga solar + red electrica<br>• Ampliable con mas baterias o paneles<br>Transporte incluido<br>PRECIO: 3350 USD"},
+    {id:"triciclo_electrico",name:"Triciclo Electrico de Paseo (Nuevo)",price:2300,fullDescription:"Triciclo electrico nuevo a estrenar<br>• Bateria Litio 72V 35Ah<br>• Velocidad maxima: 40 km/h<br>• Autonomia 80-90 km por carga<br>• Color: Negro<br>• 10 unidades disponibles a partir del miercoles<br>Transporte incluido<br>PRECIO: 2300 USD"},
+    {id:"ecoflow_delta3_plus",name:"EcoFlow Delta 3 Plus 1024Wh",price:950,fullDescription:"EcoFlow Delta 3 Plus<br>• Capacidad: 1024 Wh (expandible hasta 5 kWh)<br>• Salida AC: 1800W (3600W pico)<br>• Bateria LFP (4000 ciclos)<br>• Carga rapida 0-100% en 56 min<br>• Entrada solar 500W MPPT<br>• Wi-Fi / App EcoFlow<br>• Ultrasilenciosa <30 dB<br>Transporte incluido<br>Garantia 15 dias<br>PRECIO: 950 USD"},
+    {id:"ecoflow_delta3_max",name:"EcoFlow Delta 3 Max 2048Wh",price:1380,fullDescription:"EcoFlow Delta 3 Max<br>• Capacidad: 2048 Wh<br>• Potencia continua 2400W (3400W X-Boost)<br>• Carga ultrarrapida: 0-80% en 1.13h<br>• Transferencia automatica 10ms<br>• Bateria LiFePO4 (10 anos vida util)<br>• App con control inteligente<br>Transporte incluido<br>Garantia 15 dias<br>PRECIO: 1380 USD"},
+    {id:"ecoflow_delta3",name:"EcoFlow Delta 3 1024Wh",price:880,fullDescription:"ECOFLOW DELTA 3<br>• Capacidad: 1024Wh LiFePO4<br>• Potencia salida: 1800W (pico 3600W)<br>• Tiempo carga 0-100%: 56 min<br>• Soporta panel solar 500W<br>Transporte incluido<br>Factura y garantia<br>PRECIO: 880 USD"},
+    {id:"bluetti_ac180",name:"BLUETTI AC180 1152Wh 1800W",price:800,fullDescription:"BLUETTI AC180<br>• Capacidad: 1152Wh LiFePO4<br>• 2 salidas CA de 1800W (pico 2700W)<br>• 0-80% en 45 minutos<br>• Ideal para camping, fuera de red<br>Factura<br>Transporte incluido<br>PRECIO: 800 USD"},
+    {id:"bluetti_ac180p",name:"BLUETTI AC180P 1440Wh 1800W",price:850,fullDescription:"BLUETTI AC180P<br>• Capacidad: 1440Wh / 1800W<br>• Modo Power Lifting: 2700W pico<br>• 9 puertos de salida<br>• 4 metodos de carga (CA/solar/vehiculo/generador)<br>Factura<br>Transporte incluido<br>PRECIO: 850 USD"},
+    {id:"ecoflow_delta_pro",name:"EcoFlow Delta Pro 3600Wh",price:2300,fullDescription:"EcoFlow Delta Pro (Nuevo en caja)<br>• Capacidad: 3600Wh<br>• Potencia nominal 3600W (pico 7200W)<br>• Expandible hasta 25kWh<br>• Carga solar rapida<br>• Transferencia automatica<br>Transporte incluido<br>Garantia<br>PRECIO: 2300 USD"},
+    {id:"ecoflow_delta2_max",name:"EcoFlow Delta 2 Max 4800W",price:1360,fullDescription:"EcoFlow Delta 2 Max<br>• Capacidad: 2048 Wh<br>• Potencia nominal: 2400W<br>• Potencia pico: 4800W<br>• Garantia y factura ✅<br>• Transporte incluido en La Habana<br>PRECIO: 1360 USD"},
+    {id:"ecoflow_delta3_pro",name:"EcoFlow Delta 3 Pro 110/220V",price:3150,fullDescription:"EcoFlow Delta 3 Pro<br>• Potencia nominal: 4000W<br>• Potencia pico: 8000W<br>• Capacidad: 4096Wh<br>• Voltajes: 110V y 220V<br>• Garantia y papeles<br>• Mensajeria incluida<br>PRECIO: 3150 USD"},
+    {id:"ecoflow_delta3_classic",name:"ECOFLOW DELTA 3 CLASSIC",price:800,fullDescription:"ECOFLOW DELTA 3 CLASSIC<br>• Capacidad: 1024Wh<br>• Potencia salida: 1800W (pico 3600W)<br>• Carga completa AC en 1.5 horas<br>• Factura y garantia ✅<br>• Transporte incluido<br>PRECIO: 800 USD"},
+    {id:"ecoflow_delta2",name:"ECO FLOW DELTA 2",price:780,fullDescription:"ECO FLOW DELTA 2<br>• Capacidad: 1024Wh<br>• Salida: 1800W (pico 2700W)<br>• Carga al 80% en 50 min<br>• Admite carga solar 500W (panel no incluido)<br>• Multiples salidas: AC, USB-C, USB-A, DC<br>• Wi-Fi, Bluetooth, bateria LiFePO₄ 3000 ciclos<br>• Nueva en caja, garantia 15 dias, factura<br>• Transporte incluido ✅<br>PRECIO: 780 USD"},
+    {id:"freidora_milexus",name:"Freidora de Aire Milexus 4.2L",price:90,fullDescription:"Freidora de Aire Milexus ML-AF-901<br>• Capacidad: 4.2 L (bandeja 3.7 L / cajon 4.21 L)<br>• 120V - 60 Hz - 1400 W<br>• Cuerpo plastico mate, cajon antiadherente desmontable<br>• Proteccion sobrecalentamiento<br>• Temperatura ajustable 60-200°C<br>• Panel tactil con preestablecidos, precalentamiento, mantener caliente, recordatorio de agitacion<br>• Apagado automatico, almacenamiento cable, patas antideslizantes<br>• Cocina con poco o sin aceite<br>Transporte incluido<br>PRECIO: 90 USD"},
+    {id:"refrigerador_samsung",name:"Refrigerador Samsung Side by Side 20cuft",price:1250,fullDescription:"Refrigerador Samsung Side by Side<br>• Capacidad: 20 pies cubicos<br>• Formato Side by Side (SBS)<br>• Dispensador de agua en puerta<br>• Sistema All Around Cooling<br>• Estantes de vidrio templado<br>• Cajones para frutas y vegetales<br>• Iluminacion LED, acabado plateado moderno<br>• Dimensiones aprox.: 91 × 178 × 71 cm<br>Transporte incluido<br>PRECIO: 1250 USD"},
+    {id:"moto_topmaq_tank",name:"MOTO ELECTRICA TOPMAQ TANK 3000W",price:3300,fullDescription:"MOTO ELECTRICA TOPMAQ TANK<br>• Motor y bateria TOPMAQ<br>• Potencia: 3000W<br>• Voltaje: 72V<br>• Bateria: 45AH<br>• Autonomia: 120 km<br>• Caja reguladora VOTOL EM-50<br>• Colores: ROJO<br>• Formas de pago: USD, EUR, MN, ZELLE<br>TRANSPORTE INCLUIDO<br>PRECIO: 3300 USD"}
+  ];
+
+  let cart=[];
+  const saveCart=()=>localStorage.setItem("gv_cart",JSON.stringify(cart));
+  const loadCart=()=>{try{let s=localStorage.getItem("gv_cart");cart=s?JSON.parse(s):[];if(!Array.isArray(cart))cart=[]}catch{cart=[]};renderCart();updateCount()};
+  const updateCount=()=>document.getElementById("cartGlobalCount").innerText=cart.reduce((s,i)=>s+i.quantity,0);
+  const totalCart=()=>cart.reduce((s,i)=>s+(i.price*i.quantity),0);
+
+  function addToCart(id){
+    let p=PRODUCTS.find(x=>x.id===id); if(!p)return;
+    let exist=cart.find(i=>i.id===id);
+    exist?exist.quantity++:cart.push({id:p.id,name:p.name,price:p.price,quantity:1});
+    saveCart();renderCart();updateCount();toast(`✓ ${p.name.substring(0,28)} agregado`);
+  }
+  function updateQty(id,d){
+    let idx=cart.findIndex(i=>i.id===id); if(idx===-1)return;
+    let q=cart[idx].quantity+d;
+    q<=0?cart.splice(idx,1):cart[idx].quantity=q;
+    saveCart();renderCart();updateCount();
+  }
+  function removeItem(id){cart=cart.filter(i=>i.id!==id);saveCart();renderCart();updateCount();toast("Producto eliminado")}
+  function clearCart(){if(!cart.length)return;cart=[];saveCart();renderCart();updateCount();toast("Carrito vaciado")}
+
+  function renderCart(){
+    let c=document.getElementById("cartItemsList"), t=document.getElementById("cartTotalPrice");
+    if(!cart.length){c.innerHTML='<div class="empty-cart-msg">🛒 Tu carrito está vacío</div>';t.innerText="$0.00";return;}
+    let h='';
+    cart.forEach(i=>{h+=`<div class="cart-item"><div class="cart-item-details"><div class="cart-item-name">${i.name.substring(0,38)}</div><div class="cart-item-price">$${i.price} USD</div><div class="cart-qty-control"><button class="qty-btn decQty" data-id="${i.id}">−</button><span class="cart-item-qty">${i.quantity}</span><button class="qty-btn incQty" data-id="${i.id}">+</button><button class="remove-item-btn" data-id="${i.id}"><i class="fas fa-trash-can"></i></button></div></div></div>`});
+    c.innerHTML=h; t.innerText=`$${totalCart().toFixed(2)} USD`;
+    c.querySelectorAll('.decQty').forEach(b=>b.addEventListener('click',()=>updateQty(b.dataset.id,-1)));
+    c.querySelectorAll('.incQty').forEach(b=>b.addEventListener('click',()=>updateQty(b.dataset.id,1)));
+    c.querySelectorAll('.remove-item-btn').forEach(b=>b.addEventListener('click',()=>removeItem(b.dataset.id)));
+  }
+
+  function toast(m){
+    let d=document.createElement('div'); d.innerText=m; d.style.position='fixed'; d.style.bottom='20px'; d.style.left='50%'; d.style.transform='translateX(-50%)';
+    d.style.background='#1e2f3f'; d.style.color='#fff'; d.style.padding='6px 18px'; d.style.borderRadius='30px'; d.style.fontSize='0.8rem'; d.style.zIndex='1200'; d.style.fontWeight='500';
+    document.body.appendChild(d); setTimeout(()=>{d.style.opacity='0'; setTimeout(()=>d.remove(),200)},1600);
+  }
+
+  function renderProducts(){
+    let g=document.getElementById('productsGrid'); g.innerHTML='';
+    PRODUCTS.forEach(p=>{
+      let c=document.createElement('div'); c.className='product-card';
+      c.innerHTML=`<div class="product-info"><div class="product-title">${p.name}</div><div class="product-price">$${p.price} USD</div><div class="card-buttons"><button class="btn-add" data-id="${p.id}"><i class="fas fa-cart-plus"></i> Comprar</button><button class="btn-details" data-id="${p.id}"><i class="fas fa-info-circle"></i> Detalles</button></div></div>`;
+      g.appendChild(c);
+    });
+    document.querySelectorAll('.btn-add').forEach(b=>b.addEventListener('click',()=>addToCart(b.dataset.id)));
+    document.querySelectorAll('.btn-details').forEach(b=>b.addEventListener('click',()=>openModal(b.dataset.id)));
+  }
+
+  let curId=null;
+  function openModal(id){
+    let p=PRODUCTS.find(x=>x.id===id); if(!p)return; curId=id;
+    document.getElementById('modalTitle').innerHTML=p.name;
+    document.getElementById('modalBody').innerHTML=`<div style="white-space:pre-wrap">${p.fullDescription}</div>`;
+    document.getElementById('productModal').style.display='flex';
+  }
+  function closeModal(){document.getElementById('productModal').style.display='none';curId=null;}
+  function sendWA(){
+    if(!cart.length){toast("⚠️ Carrito vacío");return;}
+    let t="🛍️ *NUEVO PEDIDO - GESTORES DE VENTA*%0A%0A📋 *PRODUCTOS:*%0A";
+    cart.forEach(i=>t+=`• ${i.name} x${i.quantity} → $${(i.price*i.quantity).toFixed(2)} USD%0A`);
+    t+=`%0A💰 *TOTAL: $${totalCart().toFixed(2)} USD*%0A%0A🚚 Envío incluido%0A💳 Pago: USD / Zelle%0A%0A📦 *Datos de envío:* (Nombre y dirección)%0A✅ Confirmar pedido.`;
+    window.open(`https://wa.me/5356962235?text=${t}`,'_blank');
+  }
+
+  document.getElementById('clearCartBtn').addEventListener('click',()=>{if(cart.length&&confirm('¿Vaciar carrito?'))clearCart(); else if(!cart.length)toast('Carrito vacío');});
+  document.getElementById('checkoutWhatsAppBtn').addEventListener('click',sendWA);
+  document.getElementById('closeModalBtn').addEventListener('click',closeModal);
+  window.addEventListener('click',e=>{if(e.target===document.getElementById('productModal'))closeModal()});
+  document.getElementById('modalAddToCartBtn').addEventListener('click',()=>{if(curId){addToCart(curId);closeModal()}});
+
+  renderProducts();
+  loadCart();
+</script>
 </body>
 </html>
